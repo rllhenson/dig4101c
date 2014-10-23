@@ -1,0 +1,110 @@
+
+		$(document).ready(function() {
+			canvasInit();
+			// Grab the Canvas and Drawing Context
+			var oCanvas = document.getElementById("canvas");
+			var oCtx = oCanvas.getContext("2d");
+
+			var bCanvas = document.getElementById("canvasb");
+			var bCtx = oCanvas.getContext("2d");
+
+			var iWidth = oCanvas.width;
+			var iHeight = oCanvas.height;
+
+			// Create an image element
+			// var img = document.createElement('IMG');
+
+			// // When the image is loaded, draw it
+			// img.onload = function () {
+
+			//     // Save the state, so we can undo the clipping
+			//     oCtx.save();
+			    
+			    
+			//     // Create a circle
+			//     oCtx.beginPath();
+			//     oCtx.arc(106, 77, 74, 0, Math.PI * 2, false);
+			    
+			//     // Clip to the current path
+			//     oCtx.clip();
+			    
+			    
+			//     oCtx.drawImage(img, 0, 0);
+			    
+			//     // Undo the clipping
+			//     oCtx.restore();
+			// }
+
+			// // Specify the src to load the image
+			// img.src = "http://i.imgur.com/gwlPu.jpg";
+
+			var strDataURI = oCanvas.toDataURL();
+
+			function convertCanvas(strType) {
+				if (strType == "PNG")
+					var oImg = Canvas2Image.saveAsPNG(oCanvas, true);
+				if (strType == "BMP")
+					var oImg = Canvas2Image.saveAsBMP(oCanvas, true);
+				if (strType == "JPEG")
+					var oImg = Canvas2Image.saveAsJPEG(oCanvas, true);
+
+				if (!oImg) {
+					alert("Sorry, this browser is not capable of saving " + strType + " files!");
+					return false;
+				}
+
+				oImg.id = "canvasimage";
+
+				oImg.style.border = oCanvas.style.border;
+				document.body.replaceChild(oImg, oCanvas);
+
+				showDownloadText();
+			}
+
+			function saveCanvas(pCanvas, strType) {
+				var bRes = false;
+				if (strType == "PNG")
+					bRes = Canvas2Image.saveAsPNG(oCanvas);
+				if (strType == "BMP")
+					bRes = Canvas2Image.saveAsBMP(oCanvas);
+				if (strType == "JPEG")
+					bRes = Canvas2Image.saveAsJPEG(oCanvas);
+
+				if (!bRes) {
+					alert("Sorry, this browser is not capable of saving " + strType + " files!");
+					return false;
+				}
+			}
+
+			document.getElementById("savepngbtn").onclick = function() {
+				saveCanvas(oCanvas, "JPEG");
+			}
+
+			//makes savable
+			// save canvas image as data url (png format by default)
+	      	var dataURL = oCanvas.toDataURL();
+
+		    // set canvasImg image src to dataURL
+		    // so it can be saved as an image
+		    document.getElementById('canvasImg').src = dataURL;
+
+
+			// save canvas image as data url (png format by default)
+		    //var dataURL = oCanvas.toDataURL();
+
+		      // set canvasImg image src to dataURL
+		      // so it can be saved as an image
+		    //document.getElementById('canvasImg').src = dataURL;
+
+		 //      var button = document.getElementById('btn-download');
+			// button.addEventListener('click', function (e) {
+			// 	var oCanvas = document.getElementById("canvas"); 
+			// 	// saves a PNG image scaled to 100x100  
+			// 	Canvas2Image.saveAsPNG(oCanvas, false, 100, 100); 
+
+			//     // var dataURL = canvas.toDataURL('image/png');
+			//     // button.href = dataURL;
+			// });
+
+
+		});
