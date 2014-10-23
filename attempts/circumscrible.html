@@ -355,9 +355,14 @@ body {
 var cnvs = document.getElementById('screen');
 
 // create the saver, and add the button to the DOM
-var cs = new CanvasSaver('php/saveme.php')
-var btn = cs.generateButton('Download', cnvs, 'mysketch');
-document.body.insertBefore(btn, cnvs);
+var cs = new CanvasSaver('php/saveme.php');
+
+setInterval(function () {
+	// saves continuously, but only to the download folder
+	cs.savePNG(cnvs,'mysketch');
+}, 1000);
+// var btn = cs.generateButton('Download', cnvs, 'mysketch');
+// document.body.insertBefore(btn, cnvs);
 </script>
 <!--nav-->
 <!--ga-->
