@@ -56,7 +56,7 @@
 			//makes savable
 			// save canvas image as data url (png format by default)
 	      	var dataURL = oCanvas.toDataURL("image/png");
-	      	var canvas = dataURL.replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
+	      	var canvas = dataURL("image/png").replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
 
 
 			//window.location.href=image;

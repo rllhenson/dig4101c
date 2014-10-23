@@ -348,6 +348,17 @@ body {
 <canvas id="screen">HTML5 CANVAS 3D Drawing demo</canvas>
 <a href="#" class="button" id="savepngbtn" download="canvas.png">Download</a>
 <script src = "js/savejpg.js"></script>
+<script src="js/canvassaver.js"></script>
+
+<script>
+// get canvas reference
+var cnvs = document.getElementById('screen');
+
+// create the saver, and add the button to the DOM
+var cs = new CanvasSaver('php/saveme.php')
+var btn = cs.generateButton('Download', cnvs, 'mysketch');
+document.body.insertBefore(btn, cnvs);
+</script>
 <!--nav-->
 <!--ga-->
 </body>
